@@ -39,7 +39,7 @@ unique_categories = sorted(unique_categories)
 Category = st.selectbox('Select a Category', unique_categories)
 
 
-st.write("### (2) Multiselect for Sub-Categories based on Selected Cateogry")
+st.write("### (2) Multiselect for Sub-Categories based on Selected Category")
 
 filtered_df = df[df['Category'] == Category].reset_index()  # Resetting index to use 'Order_Date' in plotting
 unique_sub_categories = sorted(filtered_df['Sub_Category'].unique())
@@ -71,7 +71,7 @@ plt.ylabel('Total Sales')
 
 # Group Order Date by Year
 unique_years = grouped_sales['Year'].unique()
-plt.xticks(unique_years, [str(year) for year in unique_years], rotation=45)
+plt.xticks(unique_years, [str(year) for year in unique_years])
 
 plt.tight_layout()  # Adjust layout to make room for the rotated x-axis labels
 
@@ -106,7 +106,7 @@ col1.metric("Total Sales", f"${st.session_state.total_sales:,.2f}")
 col2.metric("Total Profit", f"${st.session_state.total_profit:,.2f}")
 col3.metric("Overall Profit Margin (%)", f"{st.session_state.overall_profit_margin:,.2f}%")
 
-st.write("### (5) Use the delta option calculating overall average profit margin for comparison (all products across all categories)")
+st.write("### (5) Calculating overall average profit margin for comparison using delta option (all products across all categories)")
 
 # Calculate the overall average profit margin
 total_sales_overall = df['Sales'].sum()
